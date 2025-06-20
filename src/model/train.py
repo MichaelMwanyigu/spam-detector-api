@@ -8,7 +8,7 @@ import joblib
 def train_model(data_path: str):
     dataframe = pd.read_csv(data_path)
     features = dataframe['message']
-    labels = dataframe['label']
+    labels = dataframe['labels']
 
     pipeline = Pipeline(
         [
@@ -20,3 +20,6 @@ def train_model(data_path: str):
     pipeline.fit(features,labels)
     joblib.dump(pipeline, 'src/model/spam_model.joblib')
     print("Model trained and saved")
+
+if __name__ == "__main__":
+    train_model("src/data/sms/sms.csv")
